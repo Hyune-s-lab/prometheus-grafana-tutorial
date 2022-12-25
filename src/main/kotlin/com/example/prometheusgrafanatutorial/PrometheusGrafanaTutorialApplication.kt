@@ -8,4 +8,5 @@ class PrometheusGrafanaTutorialApplication
 
 fun main(args: Array<String>) {
     runApplication<PrometheusGrafanaTutorialApplication>(*args)
+    LoadGenerator().go()
 }
