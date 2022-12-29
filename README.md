@@ -6,16 +6,17 @@
 - exporter
     - spring actuator, micrometer
 - prometheus v2.41.0 with docker
+- grafana 9.3.2 with docker
 
 ### How to run
 
-> docker 로 실행되는 spring application, prometheus
+> docker 로 실행되는 spring application, prometheus, grafana
 
 ```shell
 > run.sh
 ```
 
-![image](https://user-images.githubusercontent.com/55722186/209476676-0b6e9385-f6f8-4878-b2af-a6eed4f33af9.png)
+![image](https://user-images.githubusercontent.com/55722186/209907144-a7299729-f340-4ed5-8af9-ebdaa0896963.png)
 
 ## spring application (prometheus-grafana-tutorial)
 
@@ -47,4 +48,24 @@
 
 ## grafana
 
-...
+> http://localhost:3000/  
+> admin / admin
+
+### datasource 연결
+
+1. Add data source
+   ![image](https://user-images.githubusercontent.com/55722186/209907808-b893b863-bcc0-4b22-97bb-3baf845cc629.png)
+2. Prometheus 선택
+3. URL, Scrape interval 설정
+   ![image](https://user-images.githubusercontent.com/55722186/209908036-72c22336-95e7-4be6-9c3e-1042d43cb4a1.png)
+
+### dashboard 구성
+
+1. New dashboard
+   ![image](https://user-images.githubusercontent.com/55722186/209908153-b8aa192c-7f4c-4b7e-8e06-da2414bf2955.png)
+2. Add a new panel
+    - prometheus graph 에 사용한 쿼리를 입력합니다.
+      ![image](https://user-images.githubusercontent.com/55722186/209908335-a3d44f5c-9999-4290-bdc2-ff3c4eefd0cd.png)
+3. dashboard 확인
+    - 필요에 따라 time range, refresh time 을 조절할 수 있습니다.
+      ![image](https://user-images.githubusercontent.com/55722186/209908497-e35707aa-a687-406f-9728-a623f8048521.png)
