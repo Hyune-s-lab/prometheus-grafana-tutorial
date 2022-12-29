@@ -35,6 +35,19 @@ services:
     networks:
       - monitoring
 
+  grafana:
+    image: grafana/grafana-oss:9.3.2
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      GF_INSTALL_PLUGINS: grafana-clock-panel
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - monitoring
+
 networks:
   monitoring:
     driver: bridge
