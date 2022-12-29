@@ -37,14 +37,10 @@
 > http://localhost:9090/
 
 1. status > targets 에 application 정상 여부 확인
-
-![image](https://user-images.githubusercontent.com/55722186/209476697-1df8fab6-2d6f-48a3-9a25-e6e4e2799759.png)
-
-2.graph 탭에서 메트릭 조회 가능
-
-- `jvm_memory_used_bytes{job="prometheus-grafana-tutorial"}`
-
-![image](https://user-images.githubusercontent.com/55722186/209476774-1ba67059-ca33-4aa1-908e-a2d4d75115ba.png)
+   ![image](https://user-images.githubusercontent.com/55722186/209476697-1df8fab6-2d6f-48a3-9a25-e6e4e2799759.png)
+2. graph 탭에서 메트릭 조회 가능
+    - `jvm_memory_used_bytes{job="prometheus-grafana-tutorial"}`
+      ![image](https://user-images.githubusercontent.com/55722186/209476774-1ba67059-ca33-4aa1-908e-a2d4d75115ba.png)
 
 ## grafana
 
@@ -69,3 +65,10 @@
 3. dashboard 확인
     - 필요에 따라 time range, refresh time 을 조절할 수 있습니다.
       ![image](https://user-images.githubusercontent.com/55722186/209908497-e35707aa-a687-406f-9728-a623f8048521.png)
+
+## 기타
+
+### datasource url 을 `localhost` 가 아닌 `host.docker.internal` 로 설정한 이유
+
+[`시행 착오 2 - 도커 컨테이너에서 localhost 를 쓰면 어떻게 될까?` 항목 참고](https://hyune-c.tistory.com/54)
+![image](https://user-images.githubusercontent.com/55722186/209913740-445a81b5-c61b-434d-a237-a45a92f1a4cd.png)
