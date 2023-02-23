@@ -53,6 +53,8 @@
    ![image](https://user-images.githubusercontent.com/55722186/209907808-b893b863-bcc0-4b22-97bb-3baf845cc629.png)
 2. Prometheus 선택
 3. URL, Scrape interval 설정
+   > http://host.docker.internal:9090
+
    ![image](https://user-images.githubusercontent.com/55722186/209908036-72c22336-95e7-4be6-9c3e-1042d43cb4a1.png)
 
 ### dashboard 구성
