@@ -48,6 +48,8 @@ services:
     image: grafana/grafana-oss:9.3.2
     container_name: grafana
     restart: unless-stopped
+    volumes:
+      - './datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml'
     environment:
       GF_INSTALL_PLUGINS: grafana-clock-panel
     expose:
