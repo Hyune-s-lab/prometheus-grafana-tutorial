@@ -1,3 +1,13 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: mysql
+  datasource:
+    url: jdbc:mysql://host.docker.internal:3306/tutorial_mysql?rewriteBatchedStatements=true&characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password: root
+
 management:
   endpoints:
     prometheus:
@@ -5,3 +15,8 @@ management:
     web:
       exposure:
         include: prometheus
+
+logging:
+  level:
+    org.hibernate.SQL: debug    # Logger
+    org.hibernate.type: trace   # Show Query Parameter

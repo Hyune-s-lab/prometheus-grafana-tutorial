@@ -1,6 +1,15 @@
 version: '3.8'
 
 services:
+  prometheus-grafana-tutorial-mysql:
+    container_name: prometheus-grafana-tutorial-mysql
+    image: mysql:8.0.30
+    environment:
+      MYSQL_DATABASE: tutorial_mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
   prometheus-grafana-tutorial:
     image: prometheus-grafana-tutorial
     restart: unless-stopped
