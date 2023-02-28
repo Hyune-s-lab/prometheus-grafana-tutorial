@@ -2,28 +2,36 @@
 
 ### Environment
 
-- kotlin, spring 2.7.7
+- kotlin, spring 2.7.x
+- prometheus, grafana with docker
 - exporter
     - spring actuator, micrometer
-- prometheus v2.41.0 with docker
-- grafana 9.3.2 with docker
 
 ### How to run
 
-> docker 로 실행되는 spring application, prometheus, grafana
+> docker 로 실행되는 spring application, mysql, prometheus, grafana
+> prometheus, grafana datasource 도 연결 됩니다.
 
 ```shell
 > run.sh
 ```
 
-![image](https://user-images.githubusercontent.com/55722186/209907144-a7299729-f340-4ed5-8af9-ebdaa0896963.png)
+![image](https://user-images.githubusercontent.com/55722186/221808471-ded7209c-8597-449f-a116-1b5ab2485d61.png)
 
-## spring application (prometheus-grafana-tutorial)
+## 1. spring application (prometheus-grafana-tutorial)
 
-### GC 를 일으키기 위한 부하 생성
+### GC 를 일으키기 위한 부하 자동 생성 `LoadGenerator`
 
+- heap 메모리 점유를 위한 로직 구현
 - 최대 메모리를 128M 로 설정
-- `LoadGenerator` heap 메모리 점유를 위한 로직 구현
+
+### Database row 생성을 위한 API
+
+```http request
+POST http://localhost:8080/api/v1/redeemcode
+```
+
+- 무작위 금액의 redeemcode row insert
 
 ### actuator 세팅
 
@@ -32,7 +40,7 @@
 - prometheus 메트릭 수집 url with micrometer
     - http://127.0.0.1:8080/actuator/prometheus
 
-## prometheus
+## 2. prometheus
 
 > http://localhost:9090/
 
@@ -42,33 +50,19 @@
     - `jvm_memory_used_bytes{job="prometheus-grafana-tutorial"}`
       ![image](https://user-images.githubusercontent.com/55722186/209476774-1ba67059-ca33-4aa1-908e-a2d4d75115ba.png)
 
-## grafana
+## 3. grafana
 
 > http://localhost:3000/  
 > admin / admin
 
-### datasource 연결
-
-1. Add data source
-   ![image](https://user-images.githubusercontent.com/55722186/209907808-b893b863-bcc0-4b22-97bb-3baf845cc629.png)
-2. Prometheus 선택
-3. URL, Scrape interval 설정
-   > http://host.docker.internal:9090
-
-   ![image](https://user-images.githubusercontent.com/55722186/209908036-72c22336-95e7-4be6-9c3e-1042d43cb4a1.png)
-
 ### dashboard 구성
 
-1. New dashboard
-   ![image](https://user-images.githubusercontent.com/55722186/209908153-b8aa192c-7f4c-4b7e-8e06-da2414bf2955.png)
-2. Add a new panel
-    - prometheus graph 에 사용한 쿼리를 입력합니다.
-      ![image](https://user-images.githubusercontent.com/55722186/209908335-a3d44f5c-9999-4290-bdc2-ff3c4eefd0cd.png)
-3. dashboard 확인
-    - 필요에 따라 time range, refresh time 을 조절할 수 있습니다.
-      ![image](https://user-images.githubusercontent.com/55722186/209908497-e35707aa-a687-406f-9728-a623f8048521.png)
+1. Wiki > monitor [Link](https://github.com/Hyune-s-lab/prometheus-grafana-tutorial/wiki/monitor)
+    - json import
+2. dashboard 확인
+   ![image](https://user-images.githubusercontent.com/55722186/221810183-d676623e-7d8a-4459-861d-ec5a22a5df5b.png)
 
-## 기타
+## 4. 기타
 
 ### datasource url 을 `localhost` 가 아닌 `host.docker.internal` 로 설정한 이유
 
